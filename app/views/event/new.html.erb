@@ -1,0 +1,4 @@
+<%= form_with model: @event, url: '/event' do |form|%>
+  <%=form.text_field :event_date%>
+  <%=form.submit 'Create Event'%>
+<%end%>
