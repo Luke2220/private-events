@@ -4,7 +4,7 @@ def index
    if session[:current_user_id] != nil
       @user = User.find(session[:current_user_id])
    else
-      redirect_to new_user
+      redirect_to new_user_path
    end
 end
 

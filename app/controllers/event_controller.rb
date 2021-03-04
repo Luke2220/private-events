@@ -4,7 +4,7 @@ class EventController < ApplicationController
     end
 
     def create
-        @event = Event.new(event_params)
+        @event = User.find(session[:current_user_id]).hosted_events.build(event_params)
 
         if @event.save!
             redirect_to event_path(@event.id)
