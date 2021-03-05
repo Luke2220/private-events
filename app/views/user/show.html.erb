@@ -1,2 +1,11 @@
 <h1><%= @user.username%></h1>
 
+<p>Upcoming Events</p>
+<%@user.events.where(Date.parse(:event_date.to_s) > Date.now).order(:event_date.to_s) do |event|%>
+<p>Attending event: <%=event.eventdate%></p>
+<%end%>
+
+<p>Past Events</p>
+<%@user.events.where(Date.parse(:event_date.to_s) < Date.now).order(:event_date.to_s) do |event|%>
+<p>Attending event: <%=event.eventdate%></p>
+<%end%>

@@ -1,1 +1,6 @@
-<p>Host: <%=@event.host.username%></p>
+<p>Event: <%=@event.event_date%></p>
+<p>Host: <%=@event.host.username%></p><br/>
+
+<%@event.guests.each do |guest|%>
+<p>Attendee: <%=guest.username%></p>
+<%end%>
