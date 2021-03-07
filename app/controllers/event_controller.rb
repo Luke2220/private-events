@@ -3,6 +3,8 @@ class EventController < ApplicationController
         @event = Event.new
     end
 
+  
+
     def create
         @event = User.find(session[:current_user_id]).hosted_events.build(event_params)
 

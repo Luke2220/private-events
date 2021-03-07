@@ -1,11 +1,15 @@
 <h1><%= @user.username%></h1>
 
+<p><%=@user.events.take!%></p>
+
 <p>Upcoming Events</p>
-<%@user.events.where(Date.parse(:event_date.to_s) > Date.now).order(:event_date.to_s) do |event|%>
-<p>Attending event: <%=event.eventdate%></p>
+<%@user.events.order(:event_date) do |event|%>
+  <%if Date.parse(event.event_date) > Date.today%>
+    <p>Attending event: <%=event.event_date%></p>
+  <%end%>
 <%end%>
 
 <p>Past Events</p>
-<%@user.events.where(Date.parse(:event_date.to_s) < Date.now).order(:event_date.to_s) do |event|%>
-<p>Attending event: <%=event.eventdate%></p>
+<%@user.events.where('current_date > ?', Date.today).order(:event_date) do |event|%>
+<p>Attending event: <%=event.event_date%></p>
 <%end%>
