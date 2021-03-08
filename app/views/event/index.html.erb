@@ -1,6 +1,6 @@
 <h1>All Events</h1>
 <%@event.each do |event|%>
-<p> event id: <%=event.id.to_s%></p>
-<p><%= button_to 'Attend', action: 'create', controller: 'event_attendence',method: 'post', selected_event_id: event.id%>
-<p><%=event.event_date%></p>
+  <p><%=event.event_name%> event on: <%=event.event_date%></p>
+  <p><%= button_to 'Attend', action: 'create', controller: 'event_attendence',method: 'post', selected_event_id: event.id%>
+<br/>
 <%end%>

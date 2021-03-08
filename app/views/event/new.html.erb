@@ -1,4 +1,8 @@
 <%= form_with model: @event, url: '/event' do |form|%>
+<p>Event Date:</p>
   <%=form.text_field :event_date%>
+  <br/>
+  <p>Event Name:</p>
+  <%=form.text_field :event_name%> <br/><br/>
   <%=form.submit 'Create Event'%>
 <%end%>

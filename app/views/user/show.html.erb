@@ -1,6 +1,10 @@
 <h1><%= @user.username%></h1>
 
-<p><%=@user.events.take!%></p>
+<p>Events this user is hosting:</p>
+<%@user.hosted_events.each do |form|%>
+<p> <%=form.event_date%></p>
+<%end%>
+
 
 <p>Upcoming Events</p>
 <%@user.events.each do |event|%>
@@ -15,3 +19,4 @@
     <p>Attending event: <%=event.event_date%></p>
   <%end%>
 <%end%>
+

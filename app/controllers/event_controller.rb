@@ -6,13 +6,14 @@ class EventController < ApplicationController
   
 
     def create
-        @event = User.find(session[:current_user_id]).hosted_events.build(event_params)
-
-        if @event.save
+    @event = User.find(session[:current_user_id]).hosted_events.build(event_params)
+      if Date.parse(@event.event_date.to_s)
+        if @event.save!
             redirect_to event_path(@event.id)
         else
             render :new
         end
+      end
     end
 
     def show
@@ -26,7 +27,7 @@ class EventController < ApplicationController
     private
 
     def event_params
-        params.require(:event).permit(:event_date)
+        params.require(:event).permit(:event_date, :event_name)
     end
 
 end
