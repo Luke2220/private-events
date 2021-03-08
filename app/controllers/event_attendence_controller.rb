@@ -1,9 +1,7 @@
 class EventAttendenceController < ApplicationController
 
     def create
-        @user = User.find(session[:current_user_id])
-
-        @event_attendence = @user.event_attendences.build
+        @event_attendence = EventAttendence.new
         @event_attendence.event_id = params[:selected_event_id]
         @event_attendence.guest_id = session[:current_user_id]
 
