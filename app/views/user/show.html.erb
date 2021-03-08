@@ -1,9 +1,9 @@
 <h1><%= @user.username%></h1>
 
-<p><%=@user.events.take!%></p>
+<p><%=@user.events.last%></p>
 
 <p>Upcoming Events</p>
-<%@user.events.order(:event_date) do |event|%>
+<%@user.events.each do |event|%>
   <%if Date.parse(event.event_date) > Date.today%>
     <p>Attending event: <%=event.event_date%></p>
   <%end%>
