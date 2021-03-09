@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :user
   resources :event
   resources :event_attendence
+  resource :sessions, only: [:new,:create,:destroy]
   root to: "user#index"
 
 
