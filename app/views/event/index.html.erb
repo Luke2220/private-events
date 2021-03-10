@@ -1,15 +1,16 @@
 <h1>All Events</h1>
-<%@event.each do |event|%>
-  <%if event.is_event_past? == false%>
-  <p>Upcoming Events:</p>
+
+ <h2>Upcoming Events:</h2>
+<%@event.future_events.each do |event|%>
     <p><%=event.event_name%> event on: <%=event.event_date%></p>
     <p><%= button_to 'Attend', action: 'create', controller: 'event_attendence',method: 'post', selected_event_id: event.id%>
   <br/>
-  <%end%>
+<%end%>
 
-   <%if event.is_event_past?%>
-  <p>Past Events:</p>
+<h3>Past Events:</h3>
+<%@event.past_events.each do |event|%>
+  
     <p><%=event.event_name%> event on: <%=event.event_date%></p>
   <br/>
-  <%end%>
+  
 <%end%>

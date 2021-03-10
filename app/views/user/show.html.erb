@@ -1,22 +1,20 @@
 <h1><%= @user.username%></h1>
 
-<p>Events this user is hosting:</p>
+<h2>Events this user is hosting:</h2>
 <%@user.hosted_events.each do |form|%>
-<p> <%=form.event_name%></p>
+<%= link_to 'Invite', user_index_path%>
+<p><%=form.event_name%></p>
+<p>Date: <%=form.event_date%></p>
 <%end%>
 
-
-<p>Upcoming Events</p>
-<%@user.events.each do |event|%>
-  <%if Date.parse(event.event_date) > Date.today%>
-    <p>Attending event: <%=event.event_date%></p>
-  <%end%>
+<h3>Events <%=@user.username%> is attending:</h3>
+<p>Upcoming Events:</p>
+<%@user.events.future_events.each do |event|%>
+    <p><%=event.event_name%> on <%=event.event_date%>.</p>
 <%end%>
 
-<p>Past Events</p>
-<%@user.events.each do |event|%>
-  <%if Date.parse(event.event_date) < Date.today%>
-    <p>Attending event: <%=event.event_date%></p>
-  <%end%>
+<p>Past Events:</p>
+<%@user.events.past_events.each do |event|%>
+    <p><%=event.event_name%> on <%=event.event_date%>.</p>
 <%end%>
 
