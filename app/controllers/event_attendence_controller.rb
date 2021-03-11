@@ -12,4 +12,16 @@ class EventAttendenceController < ApplicationController
             redirect_to event_index_path, alert: "Could not attend"
         end
     end
+
+    def new
+        @user = User.all
+    end
+
+    def accept
+        @event_attendence = EventAttendence.find(params[:id])
+        @event_attendence.invited = true
+
+        redirect_to event_index_path, :notice 'You are attending this event'
+    end
+
 end
