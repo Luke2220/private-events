@@ -2,18 +2,14 @@ class UserController < ApplicationController
     
 def index
    if session[:current_user_id] != nil
-      @user = User.find(session[:current_user_id])
+      @user = User.all
    else
       redirect_to new_user_path
    end
 end
 
  def show
-   if session[:current_user_id] != nil
-    @user = User.find(session[:current_user_id])
-   else
-      @user = User.new
-   end
+   @user = User.find(params[:id])
  end
 
  def new

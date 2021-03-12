@@ -1,4 +1,4 @@
 <%@user.each do |user|%>
-<p><%= button_to 'Invite', action: 'create', controller: 'event_attendence',method: 'post', selected_event_id: event.id%>
-<p><%=user.username%>
+<%= button_to 'Invite', action: 'create', controller: 'event_attendence',method: 'post', params:{selected_event_id: params[:event], selected_user_id: user.id}%>
+<p><%=user.username%></p>
 <%end%>

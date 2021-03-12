@@ -1,1 +1,8 @@
 <%= link_to 'Show Events', event_index_path%>
+
+<h2>Recently signed up users:</h2>
+
+<%@user.each do |user|%>
+    <%= link_to user.username.to_s + "'s profile", user_path(user.id)%>
+    <br/><br/>
+<%end%>

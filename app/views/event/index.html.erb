@@ -1,12 +1,24 @@
 <h1>All Events</h1>
-<%@event_attendneces = EventAttendences.invited()%>
+
+<%@event_attendneces = EventAttendence.invited(session[:current_user_id])%>
+
  <h2>Upcoming Events:</h2>
 <%@event.future_events.each do |event|%>
     <p><%=event.event_name%> event on: <%=event.event_date%></p>
-    <%if event.event_attendneces.guest_id = session[:current_user_id%>
-      <p><%= button_to 'Attend', action: 'accept', controller: 'event_attendence',method: 'post', id: event.id%>
+    <%@event_attendneces.each do |attend|%>
+    <%if attend.event_id == event.id%>
+    <%if attend.accept_invitation == nil%>
+      <p>You are invited.</p>  
+        <%=form_with model: attend do |form|%>
+              <%= form.hidden_field :id, value: attend.id%>
+              <%= form.submit 'Attend'%>
+          <%end%>
+          <%else%>
+            <p> You are attending this event.</p>
+          <%end%>
+    <%end%>
    <%end%>
-  <br/>
+ <br/>
 <%end%>
 
 <h3>Past Events:</h3>
